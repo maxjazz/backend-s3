@@ -15,7 +15,8 @@ def hello_world():
 def root():
     """Returns Hello, EDP!"""
     responce = boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt')
-    return '{"content":"Hello from AWS S3!" + responce }'
+    answer = f"{'content': {{ responce }} }"
+    return answer
 
 if __name__ == '__main__':
     app.run()

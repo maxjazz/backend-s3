@@ -20,7 +20,6 @@ def root():
     """Returns Hello, EDP!"""
     responce = boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt')
     app.logger.info('Accessed the index page.')
-    app.logger.info(responce)
     body = response["Body"].read().decode("utf-8") 
     app.logger.info(body)
     	

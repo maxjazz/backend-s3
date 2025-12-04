@@ -15,7 +15,7 @@ def hello_world():
 def root():
     """Returns Hello, EDP!"""
     print (boto3.client("s3").get_object())
-    return '{'content':'Hello from AWS S3!'}'
+    return '{"content":"Hello from AWS S3!"}'
 
 if __name__ == '__main__':
     app.run()

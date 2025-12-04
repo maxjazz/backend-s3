@@ -14,8 +14,8 @@ def hello_world():
 @app.route('/')
 def root():
     """Returns Hello, EDP!"""
-    print (boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt'))
-    return '{"content":"Hello from AWS S3!"}'
+    responce = boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt')
+    return '{"content":"Hello from AWS S3!" + responce }'
 
 if __name__ == '__main__':
     app.run()

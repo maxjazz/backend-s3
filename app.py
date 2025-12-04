@@ -2,6 +2,7 @@
 from flask import Flask
 import boto3
 import logging
+from flask import Flask, jsonify, abort
 
 logging.basicConfig(filename='/tmp/app.log', level=logging.INFO)
 app = Flask(__name__)
@@ -17,11 +18,13 @@ def hello_world():
 @app.route('/')
 def root():
     """Returns Hello, EDP!"""
-    responce = boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt')
+    response = boto3.client("s3").get_object(Bucket='kuberocketci-applications-data', Key='cmtr-if35mrq2/data.txt')
     app.logger.info('Accessed the index page.')
-    app.logger.info(responce)
+    body = response["Body"].read().decode("utf-8") 
+    app.logger.info(body)
+    	
     answer = "{'content': 'hello' }"
-    return answer
+    return jsonify({"content": body})
 
 if __name__ == '__main__':
     app.run()

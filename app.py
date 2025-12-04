@@ -3,7 +3,7 @@ from flask import Flask
 import boto3
 import logging
 
-logging.basicConfig(filename='/tmp/app.log', level=logging.info)
+logging.basicConfig(filename='/tmp/app.log', level=logging.INFO)
 app = Flask(__name__)
 
 

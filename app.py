@@ -2,17 +2,10 @@
 from flask import Flask
 import boto3
 import logging
-from logging.handlers import FileHandler
 
+logging.basicConfig(filename='/tmp/app.log', level=logging.info)
 app = Flask(__name__)
 
-# Configure file logging
-file_handler = FileHandler('/tmp/application.log')
-file_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-app.logger.addHandler(file_handler)
-app.logger.setLevel(logging.INFO)
 
 
 @app.route('/api/hello')
